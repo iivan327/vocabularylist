@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flashcard</title>
+</head>
+<body>
+  <h1 id="word"></h1>
+  <p id="pos"></p>
+  <p id="firstSeen"></p>
+  <p id="quiz"></p>
+
+  <button id="relationBtn">Show Related Words</button>
+  <ul id="relations" style="display:none;"></ul>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const target = params.get("word");
+
+    fetch("vocab-db.json")
+      .then(res => res.json())
+      .then(db => {
+        const entry = target
+          ? db[target]
+          : Object.values(db)[
+              Math.floor(Math.random() * Object.keys(db).length)
+            ];
+
+        document.getElementById("word").textContent = entry.word;
+        document.getElementById("pos").textContent = "Part of Speech: " + entry.partOfSpeech;
+        document.getElementById("firstSeen").textContent = "First seen: " + entry.firstSeen;
+        document.getElementById("quiz").textContent =
+          "Quiz dates: " + entry.quiz.dates.join(", ");
+
+        const list = document.getElementById("relations");
+        entry.relations.forms.forEach(f => {
+          const li = document.createElement("li");
+          li.textContent = f + " (form)";
+          list.appendChild(li);
+        });
+
+        document.getElementById("relationBtn").onclick = () => {
+          list.style.display =
+            list.style.display === "none" ? "block" : "none";
+        };
+      });
+  </script>
+</body>
+</html>
