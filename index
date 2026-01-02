@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vocabulary Index</title>
+</head>
+<body>
+  <h1>Vocabulary List</h1>
+  <ul id="list"></ul>
+
+  <script>
+    fetch("vocab-db.json")
+      .then(res => res.json())
+      .then(db => {
+        const words = Object.values(db)
+          .sort((a, b) => a.word.localeCompare(b.word));
+
+        const ul = document.getElementById("list");
+
+        words.forEach(w => {
+          const li = document.createElement("li");
+          const stars = "*".repeat(w.quiz.count);
+          li.innerHTML = `<a href="flashcard.html?word=${w.word}">
+            ${w.word} (${w.partOfSpeech}) ${stars}
+          </a>`;
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
