@@ -4,21 +4,34 @@
     "pos": "v.",
     "firstSeen": "2025-09-10",
     "quiz": {
-      "dates": ["2025-10-22", "2025-11-12", "2025-11-26"],
+      "dates": [
+        "2025-10-22",
+        "2025-11-12",
+        "2025-11-26"
+      ],
       "count": 3
     },
-    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": []
+    }
   },
   "disaster": {
     "word": "disaster",
     "pos": "n.",
     "firstSeen": "2025-09-27",
     "quiz": {
-      "dates": ["2025-10-22", "2025-11-26"],
+      "dates": [
+        "2025-10-22",
+        "2025-11-26"
+      ],
       "count": 2
     },
     "relations": {
-      "forms": ["disastrous"],
+      "forms": [
+        "disastrous"
+      ],
       "synonyms": [],
       "antonyms": []
     }
@@ -28,13 +41,18 @@
     "pos": "adj.",
     "firstSeen": "2025-09-03",
     "quiz": {
-      "dates": ["2025-11-12", "2025-11-26"],
+      "dates": [
+        "2025-11-12",
+        "2025-11-26"
+      ],
       "count": 2
     },
     "relations": {
       "forms": [],
       "synonyms": [],
-      "antonyms": ["physical"]
+      "antonyms": [
+        "physical"
+      ]
     }
   },
   "physical": {
@@ -42,13 +60,17 @@
     "pos": "adj.",
     "firstSeen": "2025-09-03",
     "quiz": {
-      "dates": ["2025-10-22"],
+      "dates": [
+        "2025-10-22"
+      ],
       "count": 1
     },
     "relations": {
       "forms": [],
       "synonyms": [],
-      "antonyms": ["mental"]
+      "antonyms": [
+        "mental"
+      ]
     }
   },
   "imagine": {
@@ -56,11 +78,16 @@
     "pos": "v.",
     "firstSeen": "2025-09-27",
     "quiz": {
-      "dates": ["2025-10-22", "2025-11-12"],
+      "dates": [
+        "2025-10-22",
+        "2025-11-12"
+      ],
       "count": 2
     },
     "relations": {
-      "forms": ["imagination"],
+      "forms": [
+        "imagination"
+      ],
       "synonyms": [],
       "antonyms": []
     }
@@ -69,21 +96,56 @@
     "word": "break up",
     "pos": "phrasal verb",
     "firstSeen": "2025-09-24",
-    "quiz": { "dates": [], "count": 0 },
-    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+    "quiz": {
+      "dates": [],
+      "count": 0
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": []
+    }
   },
   "in case": {
     "word": "in case",
     "pos": "conjunction",
     "firstSeen": "2025-09-24",
-    "quiz": { "dates": [], "count": 0 },
-    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+    "quiz": {
+      "dates": [],
+      "count": 0
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": []
+    }
   },
   "be used to": {
     "word": "be used to",
     "pos": "phrase",
     "firstSeen": "2025-09-10",
-    "quiz": { "dates": [], "count": 0 },
-    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+    "quiz": {
+      "dates": [],
+      "count": 0
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": []
+    }
+  },
+  "Professional": {
+    "word": "Professional",
+    "pos": "Adj.",
+    "firstSeen": "2026-01-14",
+    "quiz": {
+      "dates": [],
+      "count": 0
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": []
+    }
   }
 }
