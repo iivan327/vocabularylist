@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Vocab Update (Auto Commit)</title>
+  <title>Vocab Update</title>
 </head>
 <body>
-<h2>Update Platform</h2>
+<h2>Update Vocabulary</h2>
 
 <input id="word" placeholder="word / phrase"><br>
 <input id="pos" placeholder="pos (v. / n. / phrase…)"><br>
@@ -15,7 +15,7 @@
 <label><input type="checkbox" id="quiz"> Appears in quiz today</label><br><br>
 
 <input id="token" placeholder="GitHub Token"><br>
-<input id="owner" placeholder="GitHub Owner (username)"><br>
+<input id="owner" placeholder="GitHub Owner"><br>
 <input id="repo" placeholder="Repo name"><br><br>
 
 <button onclick="commit()">Commit to GitHub</button>
@@ -24,6 +24,10 @@
 
 <script>
 const filePath = "vocab-db.json";
+
+function $(id) {
+  return document.getElementById(id);
+}
 
 function today() {
   return new Date().toISOString().slice(0,10);
@@ -34,55 +38,80 @@ function split(v) {
 }
 
 async function commit() {
-  const token = tokenInput.value;
-  const owner = ownerInput.value;
-  const repo = repoInput.value;
+  try {
+    $("log").textContent = "Working...";
 
-  const api = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+    const token = $("token").value.trim();
+    const owner = $("owner").value.trim();
+    const repo  = $("repo").value.trim();
 
-  const res = await fetch(api, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  const data = await res.json();
-  const sha = data.sha;
-  const db = JSON.parse(atob(data.content));
+    if (!token || !owner || !repo) {
+      $("log").textContent = "Missing token / owner / repo";
+      return;
+    }
 
-  const w = word.value.trim();
-  if (!db[w]) {
-    db[w] = {
-      word: w,
-      pos: pos.value,
-      firstSeen: today(),
-      quiz: { dates: [], count: 0 },
-      relations: {
-        forms: split(forms.value),
-        synonyms: split(synonyms.value),
-        antonyms: split(antonyms.value)
-      }
+    const api = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+
+    const res = await fetch(api, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to load vocab-db.json");
+    }
+
+    const data = await res.json();
+    const sha = data.sha;
+    const db = JSON.parse(atob(data.content));
+
+    const w = $("word").value.trim();
+    if (!w) {
+      $("log").textContent = "Word is empty";
+      return;
+    }
+
+    if (!db[w]) {
+      db[w] = {
+        word: w,
+        pos: $("pos").value,
+        firstSeen: today(),
+        quiz: { dates: [], count: 0 },
+        relations: {
+          forms: split($("forms").value),
+          synonyms: split($("synonyms").value),
+          antonyms: split($("antonyms").value)
+        }
+      };
+    }
+
+    if ($("quiz").checked && !db[w].quiz.dates.includes(today())) {
+      db[w].quiz.dates.push(today());
+      db[w].quiz.count = db[w].quiz.dates.length;
+    }
+
+    const body = {
+      message: `update vocab: ${w}`,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2)))),
+      sha
     };
+
+    const put = await fetch(api, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!put.ok) {
+      throw new Error("Commit failed");
+    }
+
+    $("log").textContent = "Committed successfully ✔";
+  } catch (e) {
+    $("log").textContent = "Error: " + e.message;
   }
-
-  if (quiz.checked && !db[w].quiz.dates.includes(today())) {
-    db[w].quiz.dates.push(today());
-    db[w].quiz.count = db[w].quiz.dates.length;
-  }
-
-  const body = {
-    message: `update vocab: ${w}`,
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2)))),
-    sha
-  };
-
-  await fetch(api, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  });
-
-  log.textContent = "Committed successfully ✔";
 }
 </script>
 </body>
