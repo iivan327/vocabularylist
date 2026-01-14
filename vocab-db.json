@@ -1,0 +1,89 @@
+{
+  "avoid": {
+    "word": "avoid",
+    "pos": "v.",
+    "firstSeen": "2025-09-10",
+    "quiz": {
+      "dates": ["2025-10-22", "2025-11-12", "2025-11-26"],
+      "count": 3
+    },
+    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+  },
+  "disaster": {
+    "word": "disaster",
+    "pos": "n.",
+    "firstSeen": "2025-09-27",
+    "quiz": {
+      "dates": ["2025-10-22", "2025-11-26"],
+      "count": 2
+    },
+    "relations": {
+      "forms": ["disastrous"],
+      "synonyms": [],
+      "antonyms": []
+    }
+  },
+  "mental": {
+    "word": "mental",
+    "pos": "adj.",
+    "firstSeen": "2025-09-03",
+    "quiz": {
+      "dates": ["2025-11-12", "2025-11-26"],
+      "count": 2
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": ["physical"]
+    }
+  },
+  "physical": {
+    "word": "physical",
+    "pos": "adj.",
+    "firstSeen": "2025-09-03",
+    "quiz": {
+      "dates": ["2025-10-22"],
+      "count": 1
+    },
+    "relations": {
+      "forms": [],
+      "synonyms": [],
+      "antonyms": ["mental"]
+    }
+  },
+  "imagine": {
+    "word": "imagine",
+    "pos": "v.",
+    "firstSeen": "2025-09-27",
+    "quiz": {
+      "dates": ["2025-10-22", "2025-11-12"],
+      "count": 2
+    },
+    "relations": {
+      "forms": ["imagination"],
+      "synonyms": [],
+      "antonyms": []
+    }
+  },
+  "break up": {
+    "word": "break up",
+    "pos": "phrasal verb",
+    "firstSeen": "2025-09-24",
+    "quiz": { "dates": [], "count": 0 },
+    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+  },
+  "in case": {
+    "word": "in case",
+    "pos": "conjunction",
+    "firstSeen": "2025-09-24",
+    "quiz": { "dates": [], "count": 0 },
+    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+  },
+  "be used to": {
+    "word": "be used to",
+    "pos": "phrase",
+    "firstSeen": "2025-09-10",
+    "quiz": { "dates": [], "count": 0 },
+    "relations": { "forms": [], "synonyms": [], "antonyms": [] }
+  }
+}
